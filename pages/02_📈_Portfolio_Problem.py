@@ -4,7 +4,9 @@ st.image("images/META_logo.png", width=150)
 st.title("Portfolio Problem")
 st.write("O objetivo do Problema do Portfólio é construir uma carteira de investimentos composta por uma combinação de ativos financeiros, como ações, títulos, fundos imobiliários e commodities, de tal forma que o retorno esperado seja maximizado, considerando o nível de risco aceitável pelo investidor. Este problema envolve a análise de trade-offs entre risco e retorno, e a diversificação dos ativos é uma estratégia-chave para reduzir os riscos associados a flutuações de mercado e eventos econômicos adversos.")
 
-Optimization = ["Hill Climbing","Simulated Annealing","Firefly Algorithm","Particle Swarm Optimization"]
+Optimization = ["Selecione uma opção","Hill Climbing","Simulated Annealing","Firefly Algorithm","Particle Swarm Optimization"]
+
+
 selected_Optimization = st.selectbox("**Optimization:**", Optimization)
 
 if selected_Optimization == "Hill Climbing":
@@ -16,11 +18,6 @@ if selected_Optimization == "Hill Climbing":
     stocks = ["Conjunto de ativos 1", "Conjunto de ativos 2", "Conjunto de ativos 3", "Custom"]
     selected_instance = st.selectbox("**Conjunto de Ativos**", stocks)
     
-    start_day = st.date_input("**Selecione a data inicial**", date.today())
-    end_day = st.date_input("**Selecione a data final**", date.today())
-    if end_day < start_day:
-        st.error("A data final deve ser posterior à data inicial.")
-
     if selected_instance == "Conjunto de ativos 1":
         st.markdown(
         """
@@ -44,20 +41,19 @@ if selected_Optimization == "Hill Climbing":
     elif selected_instance == "Custom":
         stocks = st.text_input("**Digite o código dos ativos:**")
         st.write(stocks)
-
+    
+    start_day = st.date_input("**Selecione a data inicial**", date.today())
+    end_day = st.date_input("**Selecione a data final**", date.today())
+    if end_day < start_day:
+        st.error("A data final deve ser posterior à data inicial.")
+    
     if st.button ("**Play**"):
-        st.markdown(
-        """
-        Run algorithm
-        """
-        )
-    else:
-        pass
-    st.markdown(
-    """
-    ## Report results
-    """
-    )
+        st.markdown("Resultado")
+        soma = N_POP + N_ITER + N_REP
+        st.write(soma)
+        st.write(start_day)
+        st.write(end_day) 
+
 
 elif selected_Optimization == "Simulated Annealing":
     st.markdown("**Setup**")
@@ -68,11 +64,7 @@ elif selected_Optimization == "Simulated Annealing":
     stocks_set = ["Conjunto de ativos 1", "Conjunto de ativos 2", "Conjunto de ativos 3", "Custom"]
     selected_instance = st.selectbox("**Conjunto de Ativos**", stocks_set)
     
-    start_day = st.date_input("**Selecione a data inicial**", date.today())
-    end_day = st.date_input("**Selecione a data final**", date.today())
-    if end_day < start_day:
-        st.error("A data final deve ser posterior à data inicial.")
-
+    
     if selected_instance == "Conjunto de ativos 1":
         st.markdown(
         """
@@ -96,20 +88,20 @@ elif selected_Optimization == "Simulated Annealing":
     elif selected_instance == "Custom":
         stocks = st.text_input("**Digite o código dos ativos:**")
         st.write(stocks)
+    
+    start_day = st.date_input("**Selecione a data inicial**", date.today())
+    end_day = st.date_input("**Selecione a data final**", date.today())
+    if end_day < start_day:
+        st.error("A data final deve ser posterior à data inicial.")
 
     if st.button ("**Play**"):
-        st.markdown(
-        """
-        Run algorithm
-        """
-        )
-    else:
-        pass
-    st.markdown(
-    """
-    ## Report results
-    """
-    )
+        st.markdown("Resultado!")
+        soma = N_POP + N_ITER + N_REP
+        st.write(soma)
+        st.write(start_day)
+        st.write(end_day) 
+
+
 elif selected_Optimization == "Firefly Algorithm":
     st.markdown("**Setup**")
     N_REP = st.number_input("N_REP", format="%0.0f")
@@ -119,11 +111,7 @@ elif selected_Optimization == "Firefly Algorithm":
     stocks_set = ["Conjunto de ativos 1", "Conjunto de ativos 2", "Conjunto de ativos 3", "Custom"]
     selected_instance = st.selectbox("**Conjunto de Ativos**", stocks_set)
     
-    start_day = st.date_input("**Selecione a data inicial**", date.today())
-    end_day = st.date_input("**Selecione a data final**", date.today())
-    if end_day < start_day:
-        st.error("A data final deve ser posterior à data inicial.")
-
+    
     if selected_instance == "Conjunto de ativos 1":
         st.markdown(
         """
@@ -147,20 +135,19 @@ elif selected_Optimization == "Firefly Algorithm":
     elif selected_instance == "Custom":
         stocks = st.text_input("**Digite o código dos ativos:**")
         st.write(stocks)
+    
+    start_day = st.date_input("**Selecione a data inicial**", date.today())
+    end_day = st.date_input("**Selecione a data final**", date.today())
+    if end_day < start_day:
+        st.error("A data final deve ser posterior à data inicial.")
 
     if st.button ("**Play**"):
-        st.markdown(
-        """
-        Run algorithm
-        """
-        )
-    else:
-        pass
-    st.markdown(
-    """
-    ## Report results
-    """
-    )
+        st.markdown("Resultado!")
+        soma = N_POP + N_ITER + N_REP
+        st.write(soma)
+        st.write(start_day)
+        st.write(end_day) 
+
 elif selected_Optimization == "Particle Swarm Optimization":
     st.markdown("**Setup**")
     N_REP = st.number_input("N_REP", format="%0.0f")
@@ -170,11 +157,7 @@ elif selected_Optimization == "Particle Swarm Optimization":
     stocks_set = ["Conjunto de ativos 1", "Conjunto de ativos 2", "Conjunto de ativos 3", "Custom"]
     selected_instance = st.selectbox("**Conjunto de Ativos**", stocks_set)
     
-    start_day = st.date_input("**Selecione a data inicial**", date.today())
-    end_day = st.date_input("**Selecione a data final**", date.today())
-    if end_day < start_day:
-        st.error("A data final deve ser posterior à data inicial.")
-
+    
     if selected_instance == "Conjunto de ativos 1":
         st.markdown(
         """
@@ -198,17 +181,15 @@ elif selected_Optimization == "Particle Swarm Optimization":
     elif selected_instance == "Custom":
         stocks = st.text_input("**Digite o código dos ativos:**")
         st.write(stocks)
+    
+    start_day = st.date_input("**Selecione a data inicial**", date.today())
+    end_day = st.date_input("**Selecione a data final**", date.today())
+    if end_day < start_day:
+        st.error("A data final deve ser posterior à data inicial.")
 
     if st.button ("**Play**"):
-        st.markdown(
-        """
-        Run algorithm
-        """
-        )
-    else:
-        pass
-    st.markdown(
-    """
-    ## Report results
-    """
-    )
+        st.markdown("Resultado!")
+        soma = N_POP + N_ITER + N_REP
+        st.write(soma)
+        st.write(start_day)
+        st.write(end_day) 
