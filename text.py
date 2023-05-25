@@ -21,20 +21,14 @@ def selected_genetic_algorithms():
               'SCALING (S_D)': True
     }
     """)
-    df_parameters = pd.DataFrame(
-        [
-            {
-                "ATTRACTIVENESS (BETA_0)": 0.98,
-                "MIN. RANDOM FACTOR (ALPHA_MIN)": 0.20,
-                "MAX. RANDOM FACTOR (ALPHA_MAX)": 0.95,
-                "LIGHT ABSORPTION (GAMMA)": "GAMMA",
-                "THETA": 0.98,
-                "TYPE ALPHA UPDATE": "YANG 0",
-                "SCALING (S_D)": True
-            }
-        ]
-    )
-    edited_df_parameters = st.experimental_data_editor(df_parameters, num_rows=0)
+
+    BETA_0 = st.number_input("ATTRACTIVENESS (BETA_0)", format="%0.2f")
+    ALPHA_MIN = st.number_input("MIN. RANDOM FACTOR (ALPHA_MIN)", format="%0.2f")
+    ALPHA_MAX = st.number_input("MAX. RANDOM FACTOR (ALPHA_MAX)", format="%0.2f")
+    # GAMMA = st.text_input("LIGHT ABSORPTION (GAMMA)")
+    THETA = st.number_input("THETA", format="%0.2f")
+    # TYPE_ALPHA_UPDATE = st.text_input("TYPE ALPHA UPDATE")
+    # S_D = st.checkbox("SCALING (S_D)")
 
     st.markdown("""
     ### Setup Algorithm
@@ -53,25 +47,19 @@ def selected_genetic_algorithms():
     }
     """
     )
+    N_REP = st.number_input("N_REP", format="%0.0f")
+    N_POP = st.number_input("N_POP", format="%0.0f")
+    N_ITER = st.number_input("N_ITER", format="%0.0f")
 
-    df_setup = pd.DataFrame(
-        [
-            {
-                "N_REP":10,
-                "N_ITER":100,
-                "N_POP":1
-            }
-        ]
-    )
-    edited_df_setup = st.experimental_data_editor(df_setup, num_rows=0)
+    if st.button("Run"):
+        st.write(N_REP)
+        st.write(N_POP)
+        st.write(N_ITER)
+        st.write(BETA_0)
+        st.write(ALPHA_MIN)
+        st.write(ALPHA_MAX)
+        st.write(THETA)
 
-    if st.button ("Play"):
-        st.write(edited_df_setup['N_REP'].values[0])
-        st.write(edited_df_setup['N_ITER'].values[0])
-        st.write(edited_df_setup['N_POP'].values[0])
-        st.write(edited_df_parameters['ATTRACTIVENESS (BETA_0)'].values[0])
-        st.write(edited_df_parameters['MIN. RANDOM FACTOR (ALPHA_MIN)'].values[0])
-        st.write(edited_df_parameters['MAX. RANDOM FACTOR (ALPHA_MAX)'].values[0])
 def knapsack_theory():
     st.markdown("""
     # Knapsack Problem
