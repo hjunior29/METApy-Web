@@ -4,8 +4,7 @@ st.image("images/META_logo.png", width=150)
 st.title("Portfolio Problem")
 st.write("O objetivo do Problema do Portfólio é construir uma carteira de investimentos composta por uma combinação de ativos financeiros, como ações, títulos, fundos imobiliários e commodities, de tal forma que o retorno esperado seja maximizado, considerando o nível de risco aceitável pelo investidor. Este problema envolve a análise de trade-offs entre risco e retorno, e a diversificação dos ativos é uma estratégia-chave para reduzir os riscos associados a flutuações de mercado e eventos econômicos adversos.")
 
-Optimization = ["Selecione uma opção","Hill Climbing","Simulated Annealing","Firefly Algorithm","Particle Swarm Optimization"]
-
+Optimization = ["Selecione o metodo de otimização","Hill Climbing","Simulated Annealing","Firefly Algorithm","Particle Swarm Optimization"]
 
 selected_Optimization = st.selectbox("**Optimization:**", Optimization)
 
@@ -15,8 +14,8 @@ if selected_Optimization == "Hill Climbing":
     N_POP = st.number_input("N_POP", format="%0.0f")
     N_ITER = st.number_input("N_ITER", format="%0.0f")
 
-    stocks = ["Conjunto de ativos 1", "Conjunto de ativos 2", "Conjunto de ativos 3", "Custom"]
-    selected_instance = st.selectbox("**Conjunto de Ativos**", stocks)
+    stocks_set = ["Selecione o conjunto de ativos","Conjunto de ativos 1", "Conjunto de ativos 2", "Conjunto de ativos 3", "Custom"]
+    selected_instance = st.selectbox("**Conjunto de Ativos**", stocks_set)
     
     if selected_instance == "Conjunto de ativos 1":
         st.markdown(
@@ -25,34 +24,71 @@ if selected_Optimization == "Hill Climbing":
    
         """
         )
+        start_day = st.date_input("**Selecione a data inicial**", date.today())
+        end_day = st.date_input("**Selecione a data final**", date.today())
+        if end_day < start_day:
+            st.error("A data final deve ser posterior à data inicial.")
+        
+        if st.button ("**Play**"):
+            st.markdown("Resultado")
+            soma = N_POP + N_ITER + N_REP
+            st.write(soma)
+            st.write(start_day)
+            st.write(end_day) 
+
     elif selected_instance == "Conjunto de ativos 2":
         st.markdown(
         """
         "EGIE3.SA","NIKE34.SA", "ABEV3.SA","BBDC3.SA","MGLU3.SA"
         """
         )
+        start_day = st.date_input("**Selecione a data inicial**", date.today())
+        end_day = st.date_input("**Selecione a data final**", date.today())
+        if end_day < start_day:
+            st.error("A data final deve ser posterior à data inicial.")
+        
+        if st.button ("**Play**"):
+            st.markdown("Resultado")
+            soma = N_POP + N_ITER + N_REP
+            st.write(soma)
+            st.write(start_day)
+            st.write(end_day) 
+
     if selected_instance == "Conjunto de ativos 3":
         st.markdown(
         """
         "NUBR33.SA","ITSA4.SA", "CEAB3.SA","SNEC34.SA","CRFB3.SA"
         """
         )
+        start_day = st.date_input("**Selecione a data inicial**", date.today())
+        end_day = st.date_input("**Selecione a data final**", date.today())
+        if end_day < start_day:
+            st.error("A data final deve ser posterior à data inicial.")
+        
+        if st.button ("**Play**"):
+            st.markdown("Resultado")
+            soma = N_POP + N_ITER + N_REP
+            st.write(soma)
+            st.write(start_day)
+            st.write(end_day)
 
     elif selected_instance == "Custom":
         stocks = st.text_input("**Digite o código dos ativos:**")
         st.write(stocks)
+        start_day = st.date_input("**Selecione a data inicial**", date.today())
+        end_day = st.date_input("**Selecione a data final**", date.today())
+        if end_day < start_day:
+            st.error("A data final deve ser posterior à data inicial.")
+        
+        if st.button ("**Play**"):
+            st.markdown("Resultado")
+            soma = N_POP + N_ITER + N_REP
+            st.write(soma)
+            st.write(start_day)
+            st.write(end_day)
     
-    start_day = st.date_input("**Selecione a data inicial**", date.today())
-    end_day = st.date_input("**Selecione a data final**", date.today())
-    if end_day < start_day:
-        st.error("A data final deve ser posterior à data inicial.")
+
     
-    if st.button ("**Play**"):
-        st.markdown("Resultado")
-        soma = N_POP + N_ITER + N_REP
-        st.write(soma)
-        st.write(start_day)
-        st.write(end_day) 
 
 
 elif selected_Optimization == "Simulated Annealing":
@@ -61,7 +97,7 @@ elif selected_Optimization == "Simulated Annealing":
     N_POP = st.number_input("N_POP", format="%0.0f")
     N_ITER = st.number_input("N_ITER", format="%0.0f")
 
-    stocks_set = ["Conjunto de ativos 1", "Conjunto de ativos 2", "Conjunto de ativos 3", "Custom"]
+    stocks_set = ["Selecione o conjunto de ativos","Conjunto de ativos 1", "Conjunto de ativos 2", "Conjunto de ativos 3", "Custom"]
     selected_instance = st.selectbox("**Conjunto de Ativos**", stocks_set)
     
     
@@ -108,7 +144,7 @@ elif selected_Optimization == "Firefly Algorithm":
     N_POP = st.number_input("N_POP", format="%0.0f")
     N_ITER = st.number_input("N_ITER", format="%0.0f")
 
-    stocks_set = ["Conjunto de ativos 1", "Conjunto de ativos 2", "Conjunto de ativos 3", "Custom"]
+    stocks_set = ["Selecione o conjunto de ativos","Conjunto de ativos 1", "Conjunto de ativos 2", "Conjunto de ativos 3", "Custom"]
     selected_instance = st.selectbox("**Conjunto de Ativos**", stocks_set)
     
     
@@ -154,7 +190,7 @@ elif selected_Optimization == "Particle Swarm Optimization":
     N_POP = st.number_input("N_POP", format="%0.0f")
     N_ITER = st.number_input("N_ITER", format="%0.0f")
 
-    stocks_set = ["Conjunto de ativos 1", "Conjunto de ativos 2", "Conjunto de ativos 3", "Custom"]
+    stocks_set = ["Selecione o conjunto de ativos","Conjunto de ativos 1", "Conjunto de ativos 2", "Conjunto de ativos 3", "Custom"]
     selected_instance = st.selectbox("**Conjunto de Ativos**", stocks_set)
     
     
