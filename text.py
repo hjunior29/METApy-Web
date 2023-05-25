@@ -1,6 +1,10 @@
 import pandas as pd
 import streamlit as st
 import numpy as np
+import streamlit.components.v1 as components
+import func
+
+# func.style_setup()
 
 def selected_genetic_algorithms():
     st.markdown("""
@@ -70,7 +74,7 @@ def selected_genetic_algorithms():
         st.write(edited_df_parameters['MAX. RANDOM FACTOR (ALPHA_MAX)'].values[0])
 def knapsack_theory():
     st.markdown("""
-    # Knapsack_Problem
+    # Knapsack Problem
     O Problema da Mochila é um desafio em otimização combinatória que busca encontrar a melhor combinação de objetos a serem alocados em uma mochila, considerando que cada objeto possui um valor monetário e um peso, e que a mochila possui uma capacidade máxima de armazenamento representada por $c_{max}$.
     
     Para entender melhor este problema, vamos considerar um conjunto de $N$ objetos, onde cada objeto i tem um valor monetário $V_i$ e um peso $P_i$ . A solução ótima do Problema da Mochila consiste em selecionar um subconjunto desses objetos de tal forma que o valor total dos itens na mochila seja maximizado, sem exceder a capacidade máxima de armazenamento. O problema é descrito por meio da equação $(1)$ .
@@ -112,8 +116,7 @@ def knapsack_theory():
     | F8-LOWKP-23D      | 23                | 10000                | 9767     |
     | F9-LOWKP-5D       | 5                 | 80                   | 130      |
     | F10-LOWKP-20D     | 20                | 879                  | 1025     |
-    """)
-    st.markdown("""
+
     # Example
     No exemplo dado, temos a instância **F1-LOWKP-10D**, que consiste em um conjunto de 10 objetos com seus respectivos valores e pesos. A variável de decisão x indica se cada objeto é selecionado (x = 1) ou não (x = 0).
     **Tabela 2**: F1-LOWKP-10D

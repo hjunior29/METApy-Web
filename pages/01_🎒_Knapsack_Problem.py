@@ -8,6 +8,8 @@ import text
 
 st.image("images/META_logo.png", width=150)
 
+func.style_setup()
+
 text.knapsack_theory()
 
 st.markdown("### Escolha o algoritmo para resolver o problema:")

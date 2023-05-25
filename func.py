@@ -6,6 +6,18 @@ import matplotlib.pyplot as plt
 import func
 import text
 
+def style_setup():
+    streamlit_style = """
+    <style>
+        html, body, [class*="css"]  {
+            text-align: justify;
+        }
+    </style>
+    """
+    st.markdown(streamlit_style, unsafe_allow_html=True)
+
+style_setup()
+
 def algorithms_setup():
     N_REP = st.number_input("N_REP", format="%0.0f")
     N_POP = st.number_input("N_POP", format="%0.0f")
