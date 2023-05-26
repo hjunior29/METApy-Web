@@ -13,7 +13,7 @@ func.style_setup()
 text.knapsack_theory()
 
 st.markdown("### Escolha o algoritmo para resolver o problema:")
-algorithms = ["","Algoritmo Genético", "Algoritmo de Enxame de Partículas", "Otimização de Colônia de Formigas", "Simulated Annealing"]
+algorithms = ["Selecione o metodo de otimização","Algoritmo Genético", "Algoritmo de Enxame de Partículas", "Otimização de Colônia de Formigas", "Simulated Annealing"]
 selected_algorithm = st.selectbox("Selecione:", algorithms)
 
 if selected_algorithm == "Algoritmo Genético":

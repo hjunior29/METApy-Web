@@ -70,7 +70,7 @@ def algorithms_setup():
     """
     )
 def instance_setup():
-    instance = ["","Instance 1", "Instance 2", "Instance 3", "Instance Custom"]
+    instance = ["Selecione a instância","Instance 1", "Instance 2", "Instance 3", "Instance Custom"]
     selected_instance = st.selectbox("Selecione:", instance)
 
     if selected_instance == "Instance 1":
@@ -88,6 +88,8 @@ def instance_setup():
             | 9          | 85         | 65          |
             | 10         | 87         | 46          |
         """)
+        text.selected_genetic_algorithms()
+
 
     elif selected_instance == "Instance 2":
         st.markdown("""
@@ -104,6 +106,8 @@ def instance_setup():
             | 9          | 85         | 65          |
             | 10         | 87         | 46          |
         """)
+        text.selected_genetic_algorithms()
+
 
     elif selected_instance == "Instance 3":
         st.markdown("""
@@ -120,6 +124,8 @@ def instance_setup():
             | 9          | 85         | 65          |
             | 10         | 87         | 46          |
         """)
+        text.selected_genetic_algorithms()
+
 
     elif selected_instance == "Instance Custom":
 
@@ -178,4 +184,4 @@ def instance_setup():
             ]
         )
         edited_df = st.experimental_data_editor(df, num_rows=0)
-    text.selected_genetic_algorithms()
+        text.selected_genetic_algorithms()
