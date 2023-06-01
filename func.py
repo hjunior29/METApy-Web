@@ -3,14 +3,16 @@ import streamlit as st
 import pandas as pd
 import text
 from META_TOOLBOX import *
-from META_TOOLBOX.META_KNAPSACK import *
-
 
 def style_setup():
     streamlit_style = """
     <style>
         html, body, [class*="css"]  {
             text-align: justify;
+        }
+        /* Selecionar a barra de rolagem vertical */
+        ::-webkit-scrollbar {
+            width: 12px;
         }
     </style>
     """
@@ -287,7 +289,7 @@ def firefly():
         # Setup FA method
         GAMMA = GAMMA_ASSEMBLY(X_L, X_U, D, 2)
         PARAMETERS = {
-            'ATTRACTIVENESS (BETA_0)': 0.98,
+            'ATTRACTIVENESS (BETA_0)': BETA_0,
             'MIN. RANDOM FACTOR (ALPHA_MIN)': 0.20,
             'MAX. RANDOM FACTOR (ALPHA_MAX)': 0.95,
             'LIGHT ABSORPTION (GAMMA)': GAMMA,
@@ -295,7 +297,7 @@ def firefly():
             'TYPE ALPHA UPDATE': 'YANG 0',
             'SCALING (S_D)': True
         }
-
+        st.write(BETA_0)
         # Setup optimization
         SETUP_FA = {
             'N_REP': 10,
@@ -340,10 +342,28 @@ def firefly():
 
         # Best Result and Cost
         COST, G_0, BEST_RESULT = OF_FUNCTION_AUX(DIMENSOES, SETUP_FA['NULL_DIC'])
+        # file_name = EXCEL_PROCESS_RESUME(NAME, D, DATASET, N_ITER, N_REP)
 
         # Print
-        st.write('\n Optimization results:', '\n \n',
-              '- Design Variables: ', X_NEW, '\n',
-              '- Profit($): {:.6e}'.format(-BEST_RESULT), '\n',
-              '- Cost($): {:.6e}'.format(COST), '\n',
-              '- Constraint: {:.6e}'.format(G_0))
+        # st.write('\n Optimization results:', '\n \n',
+        #       '- Design Variables: ', X_NEW, '\n',
+        #       '- Profit($): {:.6e}'.format(-BEST_RESULT), '\n',
+        #       '- Cost($): {:.6e}'.format(COST), '\n',
+        #       '- Constraint: {:.6e}'.format(G_0))
+        st.markdown(f"""
+        ## Optimization results:
+        
+        - Design Variables: {X_NEW}
+        - Profit($): {-BEST_RESULT:.6e}
+        - Cost($): {COST:.6e}
+        - Constraint: {G_0:.6e}
+        """)
+        with open('META_FA001_RESUME_20230601 010706.xlsx', 'rb') as file:
+            file_content = file.read()
+
+        st.download_button(
+            label="Baixar arquivo📊",
+            data=file_content,
+            file_name='META_FA001_RESUME_20230601 010706.xlsx',
+            mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        )
