@@ -1,6 +1,5 @@
-import numpy as np
 import streamlit as st
-import pandas as pd
+import os
 import text
 from META_TOOLBOX import *
 
@@ -229,6 +228,14 @@ def instance_setup():
 
     return selected_instance
 
+
+def get_latest_file(path):
+    # Get a list of all files in the directory
+    list_of_files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
+    # Get the file with the maximum creation time (i.e., the most recent file)
+    latest_file = max(list_of_files, key=lambda x: os.path.getctime(os.path.join(path, x)))
+    return latest_file
+
 def firefly(USER_INSTANCE):
     st.markdown("""
     ### Algorithms Parameters
@@ -251,9 +258,6 @@ def firefly(USER_INSTANCE):
 
     if st.button("Run"):
         # Knapsack instace selected by user
-        st.code(f"""
-            INSTANCE = {USER_INSTANCE}        
-        """)
         D = KNAPSACK_DIMENSION(USER_INSTANCE)
 
         # Input variables knapsakc problem
@@ -355,6 +359,10 @@ def firefly(USER_INSTANCE):
         #       '- Profit($): {:.6e}'.format(-BEST_RESULT), '\n',
         #       '- Cost($): {:.6e}'.format(COST), '\n',
         #       '- Constraint: {:.6e}'.format(G_0))
+
+        latest_file = get_latest_file("./")
+        st.write("The most recently created file is:", latest_file)
+
         st.markdown(f"""
         ## Optimization results:
         
@@ -363,12 +371,12 @@ def firefly(USER_INSTANCE):
         - Cost($): {COST:.6e}
         - Constraint: {G_0:.6e}
         """)
-        with open('META_FA001_RESUME_20230602 212607.xlsx', 'rb') as file:
+        with open(f'{latest_file}', 'rb') as file:
             file_content = file.read()
 
         st.download_button(
-            label="Baixar arquivo📊",
+            label="Baixar arquivo 📊",
             data=file_content,
-            file_name='META_FA001_RESUME_20230602 212607.xlsx',
+            file_name=f'{latest_file}',
             mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         )
