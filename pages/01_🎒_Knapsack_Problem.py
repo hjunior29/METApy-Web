@@ -1,8 +1,4 @@
-import random
-import time
 import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
 import func
 import text
 

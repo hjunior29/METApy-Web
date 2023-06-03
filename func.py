@@ -39,7 +39,7 @@ def instance_setup():
             | 9          | 85         | 65          |
             | 10         | 87         | 46          |
         """)
-        firefly()
+        firefly(selected_instance)
 
 
     elif selected_instance == "F2-LOWKP-20D":
@@ -67,7 +67,7 @@ def instance_setup():
             | 19         | 75         | 14          |
             | 20         | 63         | 58          |
         """)
-        firefly()
+        firefly(selected_instance)
 
     elif selected_instance == "F3-LOWKP-4D":
         st.markdown("""
@@ -78,7 +78,7 @@ def instance_setup():
             | 3          | 13         | 9           |
             | 4          | 15         | 7           |
         """)
-        firefly()
+        firefly(selected_instance)
 
     elif selected_instance == "F4-LOWKP-4D":
         st.markdown("""
@@ -89,7 +89,7 @@ def instance_setup():
             | 3          | 12         | 6           |
             | 4          | 13         | 7           |
         """)
-        firefly()
+        firefly(selected_instance)
 
     elif selected_instance == "F5-LOWKP-15D":
         st.markdown("""
@@ -111,7 +111,7 @@ def instance_setup():
             | 14         | 53.166295  | 57.118442   |
             | 15         | 60.176397  | 60.716575   |
         """)
-        firefly()
+        firefly(selected_instance)
 
     elif selected_instance == "F6-LOWKP-10D":
         st.markdown("""
@@ -128,7 +128,7 @@ def instance_setup():
         | 9          | 1          | 1           |
         | 10         | 1          | 1           |
     """)
-        firefly()
+        firefly(selected_instance)
 
     elif selected_instance == "F7-LOWKP-7D":
         st.markdown("""
@@ -142,7 +142,7 @@ def instance_setup():
             | 6          | 5          | 3           |
             | 7          | 10         | 6           |
         """)
-        firefly()
+        firefly(selected_instance)
 
     elif selected_instance == "F8-LOWKP-23D":
         st.markdown("""
@@ -172,7 +172,7 @@ def instance_setup():
             | 22         | 958        | 958         |
             | 23         | 857        | 959         |
         """)
-        firefly()
+        firefly(selected_instance)
 
     elif selected_instance == "F9-LOWKP-5D":
         st.markdown("""
@@ -184,7 +184,7 @@ def instance_setup():
             | 4          | 37         | 8           |
             | 5          | 12         | 31          |
         """)
-        firefly()
+        firefly(selected_instance)
 
     elif selected_instance == "F10-LOWKP-20D":
         st.markdown("""
@@ -211,7 +211,7 @@ def instance_setup():
             | 19         | 40         | 68          |
             | 20         | 44         | 92          |
         """)
-        firefly()
+        firefly(selected_instance)
 
     elif selected_instance == "Instance Custom":
 
@@ -227,54 +227,33 @@ def instance_setup():
         edited_df = st.experimental_data_editor(df, num_rows="dynamic")
         text.firefly()
 
-def firefly():
+    return selected_instance
+
+def firefly(USER_INSTANCE):
     st.markdown("""
     ### Algorithms Parameters
     """)
-    st.code("""
-    PARAMETERS = {
-              'ATTRACTIVENESS (BETA_0)': 0.98,
-              'MIN. RANDOM FACTOR (ALPHA_MIN)': 0.20,
-              'MAX. RANDOM FACTOR (ALPHA_MAX)': 0.95,
-              'LIGHT ABSORPTION (GAMMA)': GAMMA,
-              'THETA': 0.98,
-              'TYPE ALPHA UPDATE': 'YANG 0',
-              'SCALING (S_D)': True
-    }
-    """)
 
-    BETA_0 = st.number_input("ATTRACTIVENESS (BETA_0)", format="%0.2f")
-    ALPHA_MIN = st.number_input("MIN. RANDOM FACTOR (ALPHA_MIN)", format="%0.2f")
-    ALPHA_MAX = st.number_input("MAX. RANDOM FACTOR (ALPHA_MAX)", format="%0.2f")
+    BETA_0 = st.number_input("ATTRACTIVENESS (BETA_0)", value=0.98, format="%0.2f")
+    ALPHA_MIN = st.number_input("MIN. RANDOM FACTOR (ALPHA_MIN)", value=0.20, format="%0.2f")
+    ALPHA_MAX = st.number_input("MAX. RANDOM FACTOR (ALPHA_MAX)", value=0.95, format="%0.2f")
     # GAMMA = st.text_input("LIGHT ABSORPTION (GAMMA)")
-    THETA = st.number_input("THETA", format="%0.2f")
+    THETA = st.number_input("THETA", value=0.98, format="%0.2f")
     # TYPE_ALPHA_UPDATE = st.text_input("TYPE ALPHA UPDATE")
     # S_D = st.checkbox("SCALING (S_D)")
 
     st.markdown("""
     ### Setup Algorithm
     """)
-    st.code(
-        """
-        SETUP = {
-                'N_REP': 10,
-                'N_ITER': 100,
-                'N_POP': 1,
-                'D': 3,
-                'X_L': [-2, -2, -2],
-                'X_U': [2, 2, 2],
-                'NULL_DIC': None,
-                'PARAMETERS': PARAMETERS
-        }
-        """
-    )
-    N_REP = st.number_input("N_REP", format="%0.0f")
-    N_POP = st.number_input("N_POP", format="%0.0f")
-    N_ITER = st.number_input("N_ITER", format="%0.0f")
+    N_REP = st.number_input("N_REP", value= 10, step=1)
+    N_POP = st.number_input("N_POP", value= 100, step=1)
+    N_ITER = st.number_input("N_ITER", value= 1, step=1)
 
     if st.button("Run"):
         # Knapsack instace selected by user
-        USER_INSTANCE = 'F1-LOWKP-10D'
+        st.code(f"""
+            INSTANCE = {USER_INSTANCE}        
+        """)
         D = KNAPSACK_DIMENSION(USER_INSTANCE)
 
         # Input variables knapsakc problem
@@ -290,25 +269,51 @@ def firefly():
         GAMMA = GAMMA_ASSEMBLY(X_L, X_U, D, 2)
         PARAMETERS = {
             'ATTRACTIVENESS (BETA_0)': BETA_0,
-            'MIN. RANDOM FACTOR (ALPHA_MIN)': 0.20,
-            'MAX. RANDOM FACTOR (ALPHA_MAX)': 0.95,
+            'MIN. RANDOM FACTOR (ALPHA_MIN)': ALPHA_MIN,
+            'MAX. RANDOM FACTOR (ALPHA_MAX)': ALPHA_MAX,
             'LIGHT ABSORPTION (GAMMA)': GAMMA,
-            'THETA': 0.98,
+            'THETA': THETA,
             'TYPE ALPHA UPDATE': 'YANG 0',
             'SCALING (S_D)': True
         }
-        st.write(BETA_0)
-        # Setup optimization
+
+    # Setup optimization
         SETUP_FA = {
-            'N_REP': 10,
-            'N_ITER': 200,
-            'N_POP': 10,
+            'N_REP': N_REP,
+            'N_ITER': N_ITER,
+            'N_POP': N_POP,
             'D': D,
             'X_L': X_L,
             'X_U': X_U,
             'PARAMETERS': PARAMETERS,
             'NULL_DIC': {'X': VARS, 'INSTANCE': USER_INSTANCE, 'R_P': 10 ** 6}
         }
+
+    # Print Vars
+        st.code(f"""
+            SETUP_FA = {{
+                'N_REP': {N_REP},
+                'N_ITER': {N_ITER},
+                'N_POP': {N_POP},
+                'D': {D},
+                'X_L': [-2, -2, -2],
+                'X_U': [2, 2, 2],
+                'PARAMETERS': {{
+                    'ATTRACTIVENESS (BETA_0)': {BETA_0},
+                    'MIN. RANDOM FACTOR (ALPHA_MIN)': {ALPHA_MIN},
+                    'MAX. RANDOM FACTOR (ALPHA_MAX)': {ALPHA_MAX},
+                    'LIGHT ABSORPTION (GAMMA)': GAMMA,
+                    'THETA': {THETA},
+                    'TYPE ALPHA UPDATE': 'YANG 0',
+                    'SCALING (S_D)': True
+                }}
+                'NULL_DIC': {{
+                    'X': {VARS}, 
+                    'INSTANCE': {USER_INSTANCE}, 
+                    'R_P': {10 ** 6}
+                }}
+            }}
+        """)
 
         # OF statement and OF auxiliar
         def OF_FUNCTION(X, NULL_DIC):
@@ -358,12 +363,12 @@ def firefly():
         - Cost($): {COST:.6e}
         - Constraint: {G_0:.6e}
         """)
-        with open('META_FA001_RESUME_20230601 010706.xlsx', 'rb') as file:
+        with open('META_FA001_RESUME_20230602 212607.xlsx', 'rb') as file:
             file_content = file.read()
 
         st.download_button(
             label="Baixar arquivo📊",
             data=file_content,
-            file_name='META_FA001_RESUME_20230601 010706.xlsx',
+            file_name='META_FA001_RESUME_20230602 212607.xlsx',
             mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         )
