@@ -24,13 +24,13 @@ A implementação está estruturada da seguinte forma:
 st.write("""
     <div style='text-align: justify'>
     <ul>
-        <li>A função STOCKS_DATASET carrega as informações de retorno e covariância diários de cada ativo do portfólio em um intervalo de tempo definido pelo usuário. Para fazer o calculo do retorno e covariância é usado as seguintes equações:</li>
+        <li>Uma função é empregada para carregar informações sobre os preços de cada ativo da carteira durante um determinado período de tempo pré-estabelecido, assim como fazer os cálculos de retorno e covariância desses ativos, as informações são obtidas através do Yahoo! Finance. Para fazer o calculo do retorno e covariância é usado as seguintes equações:</li>
     </ul>
  </div>
 """, unsafe_allow_html=True)
 
 
-st.latex("""Return = {['Close'][J + 1]}{['Close'][J] - 1}""")
+st.latex("""Retorno = {['Close'][J + 1]}{['Close'][J] - 1}""")
 
 st.write("""
 Onde:
@@ -40,17 +40,17 @@ Onde:
 ['Close'][J] - 1: preço de fechamento do dia anterior.
 """)
 
-st.latex("""COVARIANCE = RETURN.cov() """)
+st.latex("""Covariance = Retorno.cov() """)
 
 st.write("""
     <div style='text-align: justify'>
     <ul>
-        <li>A função PORTIFOLIO_RETURN_RISK calcula o retorno e risco anualizados do portfólio, dado um determinado vetor de pesos X, utilizando a matriz de covariância e o vetor de retornos, definidos no dicionário NULL_DIC. O cálculo do retorno e risco anualizado do portfolio é feito usando as seguintes equações:</li>
+        <li>Uma função responsável por calcula o retorno e risco anualizados do portfólio, dado um determinado vetor de pesos , utilizando a matriz de covariância e o vetor de retornos, definidos em um dicionário. O cálculo do retorno e risco anualizado do portfolio é feito usando as seguintes equações:</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
 
-st.latex("""Retorno_{carteira} = \sum X[I] * RETURN[I] * T_Y""")
+st.latex("""Retorno_{carteira} = \sum X[I] * Retorno[I] * T_Y""")
 
 st.write("""
 Onde:
@@ -62,14 +62,14 @@ RETURN: é a lista de retorno dos ativos.
 T_Y: é o número de dias que a bolsa  opera em 1 ano.
 """)
 
-st.latex("""VAR = \sum X[I] * X[J] * COVARIANCE[I, J] *T_Y """)
+st.latex("""Var = \sum X[I] * X[J] * Covariance[I, J] *T_Y """)
 
 st.write("""
 Onde: 
 
 X[I]: é a lista de pesos para os ativos.
 
-COVARIANCE[I,J]: é a matriz de covariância.
+Covariance[I,J]: é a matriz de covariância.
 
 T_Y: é o número de dias que a bolsa  opera em 1 ano.
 """)
@@ -86,11 +86,15 @@ st.write("""
 """, unsafe_allow_html=True)
 st.write("""
     <div style='text-align: justify'>
-    Por fim, o código define os limites de investimento (X_L e X_U), o dicionário NULL_DIC, contendo as informações necessárias para a resolução do problema de otimização, e os parâmetros do algoritmo Firefly (PARAMETERS). A função OF_FUNCTION é utilizada como a função objetivo do algoritmo, e a função PORTIFOLIO_RETURN_RISK é utilizada para calcular o retorno e risco do portfólio em cada iteração do algoritmo.
+    Por fim, o código define os limites de investimento, o dicionário, contendo as informações necessárias para a resolução do problema de otimização, e os parâmetros do algoritmo Firefly. Uma função é utilizada para calcular o retorno e risco do portfólio em cada iteração do algoritmo.
 </div>
 """, unsafe_allow_html=True)
 
-
+st.write("""
+    <div style='text-align: justify'>
+    De forma resumida, o algoritmo é responsável por selecionar um conjunto de n ativos, obter as informações referentes a um período específico e, com base na Teoria de Markowitz, realizar cálculos e um processo de otimização a fim de retornar uma solução ideal de distribuição do investimento percentual em cada ativo.
+    </div>
+""", unsafe_allow_html=True)
 
 #Escolher metodo de otimizacao
 Optimization = ["Selecione o metodo de otimização","Firefly Algorithm"]
@@ -100,17 +104,17 @@ selected_Optimization = st.selectbox("**Optimization:**", Optimization)
 if selected_Optimization == "Firefly Algorithm":
 
     #seleciona o conjuntos de ativo
-    stocks_set = ["Selecione o conjunto de ativos","USA-1", "USA-2", "USA-3", "USA-4"]
-    selected_instance = st.selectbox("**Conjunto de Ativos**", stocks_set)
+    stocks_set = ["Selecione a Instância","USA-1", "USA-2", "USA-3", "USA-4"]
+    selected_instance = st.selectbox("**Instância**", stocks_set)
     
     if selected_instance == "USA-1":
         st.markdown(
         """
-        | Empresa         | Símbolo   | Data Inicial | Data Final |
-        |-----------------|-----------|--------------|------------|
-        |Apple            | AAPL      | 01/01/2016   | 31/12/2017 |
-        |Amazon           | AMZN      | 
-        |Meta Platforms   | META      | 
+        | Empresa         | Símbolo   | Parâmetros da Otimização  | Data Inicial | Data Final |
+        |-----------------|-----------|---------------------------|--------------|------------|
+        |Apple            | AAPL      | Número de Repetições: 30  | 01/01/2016   | 31/12/2017 |
+        |Amazon           | AMZN      | Número de Interações: 500 |
+        |Meta Platforms   | META      | Número da População:  20  |
         |Google           | GOOGL     |
         
         """
@@ -121,11 +125,11 @@ if selected_Optimization == "Firefly Algorithm":
     elif selected_instance == "USA-2":
         st.markdown(
         """
-        | Empresa                 | Símbolo   | Data Inicial | Data Final |
-        |-------------------------|-----------|--------------|------------|
-        |WEG S.A.                 | WEGE3.SA  | 01/01/2016   | 31/12/201  |
-        |Lojas Renner S.A.        | LREN3.SA  | 
-        |Vale S.A.                | VALE3.SA  | 
+        | Empresa                 | Símbolo   | Parâmetros da Otimização  | Data Inicial | Data Final |
+        |-------------------------|-----------|---------------------------|--------------|------------|
+        |WEG S.A.                 | WEGE3.SA  | Número de Repetições: 30  | 01/01/2016   | 31/12/201  |
+        |Lojas Renner S.A.        | LREN3.SA  | Número de Interações: 500 |
+        |Vale S.A.                | VALE3.SA  | Número da População:  20  |
         |Petróleo Brasileiro S.A. | PETR4.SA  |
         |Equatorial Energia S.A.  | EQTL3.SA  |
    
@@ -143,9 +147,9 @@ if selected_Optimization == "Firefly Algorithm":
         
 #Setup e parametros
     
-        N_REP = st.number_input("N_REP", format="%0.1f")
-        N_POP = st.number_input("N_ITER", format="%0.1f")
-        N_ITER = st.number_input("N_POP", format="%0.1f")
+        # N_REP = st.number_input("N_REP", format="%0.1f")
+        # N_POP = st.number_input("N_ITER", format="%0.1f")
+        # N_ITER = st.number_input("N_POP", format="%0.1f")
 
         if st.button ("**Play**"):
             FA_PORTIFOLIO.FIREFLY()
@@ -153,11 +157,11 @@ if selected_Optimization == "Firefly Algorithm":
     if selected_instance == "USA-3":
         st.markdown(
         """
-        | Empresa                  | Símbolo   | Data Inicial | Data Final |
-        |--------------------------|-----------|--------------|------------|
-        |Engie Brasil Energia S.A. | EGIE3.SA  | xx/xx/xxxx   | xx/xx/xxxx |
-        |Magazine Luiza S.A.       | MGLU3.SA  | 
-        |Ambev S.A.                | ABEV3.SA  | 
+        | Empresa                  | Símbolo   | Parâmentros da Otimização  | Data Inicial | Data Final |
+        |--------------------------|-----------|----------------------------|--------------|------------|
+        |Engie Brasil Energia S.A. | EGIE3.SA  | Número de Repetições: 30   |01/01/2016    | 31/12/2017 |
+        |Magazine Luiza S.A.       | MGLU3.SA  | Número de Interações: 500  |
+        |Ambev S.A.                | ABEV3.SA  | Número da População:  20   |
         |Banco Bradesco S.A.       | BBDC3.SA  |
         |NIKE, Inc.                | NIKE34.SA |
         """
@@ -173,9 +177,9 @@ if selected_Optimization == "Firefly Algorithm":
         #    st.error("A data final deve ser posterior à data inicial.")
         
 #Setup e parametros
-        N_REP = st.number_input("N_REP", format="%0.1f")
-        N_POP = st.number_input("N_ITER", format="%0.1f")
-        N_ITER = st.number_input("N_POP", format="%0.1f")
+        # N_REP = st.number_input("N_REP", format="%0.1f")
+        # N_POP = st.number_input("N_ITER", format="%0.1f")
+        # N_ITER = st.number_input("N_POP", format="%0.1f")
 
         if st.button ("**Play**"):
             FA_PORTIFOLIO.FIREFLY()
@@ -184,13 +188,13 @@ if selected_Optimization == "Firefly Algorithm":
     elif selected_instance == "USA-4":
         st.markdown(
         """
-        | Empresa                  | Símbolo   | Data Inicial | Data Final |
-        |--------------------------|-----------|--------------|------------|
-        |C&A Modas S.A.            | CEAB3.SA  | xx/xx/xxxx   | xx/xx/xxxx |
-        |Itaúsa S.A.               | ITSA4.SA  | 
-        |Atacadão S.A.             | CRFB3.SA  | 
-        |Sony Group Corporation    | SNEC34.SA |
-        |Nu Holdings Ltd.          | NUBR33.SA |
+        | Empresa               | Símbolo   | Parâmetros da Otimização  | Data Inicial | Data Final | 
+        |-----------------------|-----------|---------------------------|--------------|------------|
+        |C&A Modas S.A.         | CEAB3.SA  | Número de Repetições: 30  | 01/01/2016   | 31/12/2017 | 
+        |Itaúsa S.A.            | ITSA4.SA  | Número de Interações: 500 |              |            | 
+        |Atacadão S.A.          | CRFB3.SA  | Número da População:  20  |              |            | 
+        |Sony Group Corporation | SNEC34.SA |
+        |Nu Holdings Ltd.       | NUBR33.SA |
         """
         )
         stocks_set_4 = ["NUBR33.SA","ITSA4.SA", "CEAB3.SA","SNEC34.SA","CRFB3.SA"]
@@ -205,9 +209,9 @@ if selected_Optimization == "Firefly Algorithm":
         
 #Setup e parametros
         
-        N_REP = st.number_input("N_REP", format="%0.1f")
-        N_POP = st.number_input("N_ITER", format="%0.1f")
-        N_ITER = st.number_input("N_POP", format="%0.1f")
+        # N_REP = st.number_input("N_REP", format="%0.1f")
+        # N_POP = st.number_input("N_ITER", format="%0.1f")
+        # N_ITER = st.number_input("N_POP", format="%0.1f")
 
         if st.button ("**Play**"):
             FA_PORTIFOLIO.FIREFLY()

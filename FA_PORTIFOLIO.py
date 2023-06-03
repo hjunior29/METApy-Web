@@ -28,7 +28,7 @@ def FIREFLY():
     # Setup optimization
     SETUP_FA = { 
                 'N_REP': 30,
-                'N_ITER': 50, #500
+                'N_ITER': 500,
                 'N_POP': 20,
                 'D': D,
                 'X_L': X_L,
@@ -63,15 +63,6 @@ def FIREFLY():
     # Best Result and Cost
     RET, VOL, SHARP_INDEX, SUMA, G_0 = OF_FUNCTION_AUX(DIMENSIONS, SETUP_FA['NULL_DIC'])
 
-    # Print
-#print('\n Optimization results:', '\n')
-#print(' - Design Variables: ', [f'{TIC}: {100 * PERC:.2f} %' for TIC, PERC in zip(STOCKS, DIMENSIONS)])
-#print(' - Sharp index:    {:.2f}'.format(SHARP_INDEX), '\n',
- #     '- Risk free (%):  {:.2f}'.format(RISK_FREE_ASSET * 100), '\n',
-  #    '- Return (%):     {:.2f}'.format(RET * 100), '\n',
-   #   '- Risk (%):       {:.2f}'.format(VOL * 100), '\n',
-    #  '- Constrain:      {:.6e}'.format(G_0), '\n',
-    #  '- sum(x):         {:.6e}'.format(SUMA))
     st.subheader('Optimization results:')
 
     st.write('- Design Variables:', [f'{TIC}: {100 * PERC:.2f} %' for TIC, PERC in zip(STOCKS, DIMENSIONS)])
