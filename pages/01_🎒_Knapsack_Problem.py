@@ -2,9 +2,9 @@ import streamlit as st
 import func
 import text
 
-st.image("images/META_logo.png", width=150)
-
 func.style_setup()
+
+st.image("images/META_logo.png", width=150)
 
 text.knapsack_theory()
 
