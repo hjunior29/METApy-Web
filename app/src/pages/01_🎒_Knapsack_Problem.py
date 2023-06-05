@@ -4,7 +4,7 @@ import text
 
 func.style_setup()
 
-st.image("images/META_logo.png", width=150)
+st.image("app/src/images/META_logo.png", width=150)
 
 text.knapsack_theory()
 

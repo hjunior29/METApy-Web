@@ -360,7 +360,7 @@ def firefly(USER_INSTANCE):
         #       '- Cost($): {:.6e}'.format(COST), '\n',
         #       '- Constraint: {:.6e}'.format(G_0))
 
-        latest_file = get_latest_file("./")
+        latest_file = get_latest_file("../../")
         st.write("The most recently created file is:", latest_file)
 
         st.markdown(f"""
