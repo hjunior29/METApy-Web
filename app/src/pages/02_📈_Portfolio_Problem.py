@@ -3,6 +3,7 @@ from datetime import date
 import datetime
 import streamlit.components.v1 as components
 import FA_PORTFOLIO
+import UTILS
 
 
 st.image("app/src/images/META_logo.png", width=150)
@@ -123,7 +124,7 @@ if selected_Optimization == "Firefly Algorithm":
         
         """
         )
-        FA_PORTIFOLIO.FIREFLY()
+        FA_PORTFOLIO.FIREFLY()
     
     elif selected_instance == "Conjunto de Ativos 2":
         st.markdown(
@@ -139,7 +140,7 @@ if selected_Optimization == "Firefly Algorithm":
         """
         )
         stocks_set_2 = ["WEGE3.SA", "LREN3.SA", "VALE3.SA", "PETR4.SA", "EQTL3.SA"]
-        FA_PORTIFOLIO.FIREFLY()
+        FA_PORTFOLIO.FIREFLY()
 
     if selected_instance == "Conjunto de Ativos 3":
         st.markdown(
@@ -154,7 +155,7 @@ if selected_Optimization == "Firefly Algorithm":
         """
         )
         stocks_set_3 = ["EGIE3.SA","NIKE34.SA", "ABEV3.SA","BBDC3.SA","MGLU3.SA"]
-        FA_PORTIFOLIO.FIREFLY()
+        FA_PORTFOLIO.FIREFLY()
 
 
     elif selected_instance == "Conjunto de Ativos 4":
@@ -170,7 +171,7 @@ if selected_Optimization == "Firefly Algorithm":
         """
         )
         stocks_set_4 = ["NUBR33.SA","ITSA4.SA", "CEAB3.SA","SNEC34.SA","CRFB3.SA"]
-        FA_PORTIFOLIO.FIREFLY()
+        FA_PORTFOLIO.FIREFLY()
 
 
     # elif selected_instance == "Custom":
@@ -190,4 +191,4 @@ if selected_Optimization == "Firefly Algorithm":
     #     if end_day < start_day:
     #         st.error("A data final deve ser posterior à data inicial.")
         
-    #     FA_PORTIFOLIO.FIREFLY()
+    #     FA_PORTFOLIO.FIREFLY()

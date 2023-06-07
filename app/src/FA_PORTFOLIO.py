@@ -1,5 +1,7 @@
 from META_TOOLBOX import *
+from UTILS import *
 import streamlit as st
+
 
 def FIREFLY():    
     # Setup FA method 
@@ -7,7 +9,7 @@ def FIREFLY():
     N_REP = st.number_input("N_REP", value= 30, step=1)
     N_POP = st.number_input("N_POP", value= 500, step=1)
     N_ITER = st.number_input("N_ITER", value= 20, step=1)
-    if st.button ("**Play**"):
+    if st.button ("Play"):
         USER_INSTANCE = 'USA-1'
         D = PORTIFOLIO_DIMENSION(USER_INSTANCE)
         STOCKS, START_DAY, END_DAY, RISK_FREE_ASSET = PORTIFOLIO_TICKERS(USER_INSTANCE)
