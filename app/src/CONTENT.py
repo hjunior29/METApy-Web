@@ -1,66 +1,45 @@
-import pandas as pd
 import streamlit as st
-import numpy as np
-import streamlit.components.v1 as components
-import func
 
-# func.style_setup()
-
-def selected_genetic_algorithms():
+def ABOUT():
     st.markdown("""
-    ### Algorithms Parameters
+    # Problemas de Otimização
+    
+    Os problemas de otimização estão presentes em diversas áreas, como engenharia, economia, logística e ciências da computação. Eles envolvem a busca pela melhor solução possível de acordo com uma função objetivo, que pode ser minimizada ou maximizada, e estão sujeitos a determinadas restrições.
+    
+    Alguns exemplos de problemas de otimização incluem:
+    
+    - **Knapsack Problem**: Dado um conjunto de itens com pesos e valores, determinar a combinação de itens que maximiza o valor total sem exceder a capacidade da mochila.
+    - **Portfolio Problem**: Selecionar a combinação de ativos que maximiza o retorno esperado do investimento, sujeito a restrições de risco e liquidez.
+    
+    # Algoritmos de Otimização
+    
+    Os algoritmos de otimização são técnicas e métodos usados para encontrar soluções ótimas ou aproximadamente ótimas para problemas de otimização. Eles têm ampla aplicação em áreas como engenharia, economia, logística e ciências da computação.
+    
+    Aqui estão alguns exemplos de algoritmos de otimização populares:
+    
+    - **Firefly**: Baseado nas interações sociais dos vaga-lumes, o algoritmo Firefly ajusta a atração dos vaga-lumes (ou seja, partículas) no espaço de busca com base em seu brilho, que é determinado pelo valor da função objetivo de um dado problema. Vaga-lumes movem-se em direção aos mais atraentes e brilhantes, e se nenhum for encontrado, movem-se aleatoriamente.
+    
+    Neste site, você encontrará informações e tutoriais sobre como aplicar esses algoritmos de otimização a uma variedade de problemas do mundo real.
+    
+    # Sobre o projeto
+    
+    Bem-vindo à página do nosso projeto de pesquisa em Ciências de Dados, onde buscamos discutir e aplicar modelos matemáticos, estatísticos e de inteligência computacional para resolver problemas complexos do mundo real. Este projeto abrange uma ampla gama de abordagens, incluindo algoritmos clássicos de otimização linear e não linear, econométricos, metaheurísticas e machine learning.
+    
+    Nosso projeto é dividido em três frentes principais de pesquisa:
+    
+    - Estudo do framework dos modelos matemáticos, estatísticos e de inteligência computacional
+    - Análise de algoritmos existentes na literatura e proposição de algoritmos híbridos
+    - Implementação dos algoritmos propostos em problemas reais
+    
+    Nossas áreas de aplicação incluem, mas não se limitam a, problemas de predição e otimização em dados do mercado financeiro, produção e produtividade de grãos, clima, educação e pesquisa, e saúde. Acreditamos que o uso de soluções computacionais eficientes e avançadas pode levar a descobertas significativas e melhorias nessas áreas.
+    
+    Além disso, organizamos um desafio em Ciências de Dados nas edições do Congresso de Ciência e Tecnologia da PUC Goiás. Este evento permite que alunos de graduação e pós-graduação apliquem modelos para resolver problemas usando bases de dados reais. A primeira edição foi realizada com sucesso em 2021/2 e continuamos a construir e expandir este evento para envolver mais estudantes e promover a pesquisa em Ciências de Dados.
+    
+    Convidamos você a explorar nosso projeto e descobrir como a aplicação de modelos matemáticos, estatísticos e de inteligência computacional pode levar a soluções inovadoras para os desafios que enfrentamos em diversas áreas. Junte-se a nós nesta jornada de pesquisa e descoberta, enquanto trabalhamos para criar um impacto positivo no mundo através da ciência de dados.
+    
     """)
-    st.code("""
-    PARAMETERS = {
-              'ATTRACTIVENESS (BETA_0)': 0.98,
-              'MIN. RANDOM FACTOR (ALPHA_MIN)': 0.20,
-              'MAX. RANDOM FACTOR (ALPHA_MAX)': 0.95,
-              'LIGHT ABSORPTION (GAMMA)': GAMMA,
-              'THETA': 0.98,
-              'TYPE ALPHA UPDATE': 'YANG 0',
-              'SCALING (S_D)': True
-    }
-    """)
 
-    BETA_0 = st.number_input("ATTRACTIVENESS (BETA_0)", format="%0.2f")
-    ALPHA_MIN = st.number_input("MIN. RANDOM FACTOR (ALPHA_MIN)", format="%0.2f")
-    ALPHA_MAX = st.number_input("MAX. RANDOM FACTOR (ALPHA_MAX)", format="%0.2f")
-    # GAMMA = st.text_input("LIGHT ABSORPTION (GAMMA)")
-    THETA = st.number_input("THETA", format="%0.2f")
-    # TYPE_ALPHA_UPDATE = st.text_input("TYPE ALPHA UPDATE")
-    # S_D = st.checkbox("SCALING (S_D)")
-
-    st.markdown("""
-    ### Setup Algorithm
-    """)
-    st.code(
-    """
-    SETUP = {
-            'N_REP': 10,
-            'N_ITER': 100,
-            'N_POP': 1,
-            'D': 3,
-            'X_L': [-2, -2, -2],
-            'X_U': [2, 2, 2],
-            'NULL_DIC': None,
-            'PARAMETERS': PARAMETERS
-    }
-    """
-    )
-    N_REP = st.number_input("N_REP", format="%0.0f")
-    N_POP = st.number_input("N_POP", format="%0.0f")
-    N_ITER = st.number_input("N_ITER", format="%0.0f")
-
-    if st.button("Run"):
-        st.write(N_REP)
-        st.write(N_POP)
-        st.write(N_ITER)
-        st.write(BETA_0)
-        st.write(ALPHA_MIN)
-        st.write(ALPHA_MAX)
-        st.write(THETA)
-
-def knapsack_theory():
+def KP_THEORY():
     st.markdown("""
     # Knapsack Problem
     O Problema da Mochila é um desafio em otimização combinatória que busca encontrar a melhor combinação de objetos a serem alocados em uma mochila, considerando que cada objeto possui um valor monetário e um peso, e que a mochila possui uma capacidade máxima de armazenamento representada por $c_{max}$.
@@ -154,4 +133,63 @@ def knapsack_theory():
     """)
     st.latex("""
     w = 55x_1 + 10x_2 + 47x_3 + 5x_4 + 4x_5 + 50x_6 + 8x_7 + 61x_8 + 85x_9 + 87x_{10} \leq w_{max} \\tag{2}
+    """)
+
+def PORTFOLIO_THEORY():
+    st.markdown("""
+    # Portifolio Problem    
+    O Problema do Portfólio consiste em selecionar diferentes ativos financeiros para compor uma carteira de investimentos, com o intuito de maximizar o retorno esperado e reduzir os riscos associados à flutuações do mercado. O modelo de Markowitz é aplicado para determinar os pesos ideais de cada ativo na carteira, por meio da diversificação e da otimização, a fim de alcançar uma combinação ótima que satisfaça os objetivos financeiros do investidor.
+    
+    A implementação da uma otimização de portfólio é feita utilizando o algoritmo Firefly. O objetivo é encontrar a alocação ótima de um portfólio, que maximize o índice de Sharpe, que relaciona o retorno do portfólio com o seu risco, com a introdução de restrições de limites de investimento em cada ativo do portfólio.
+    A implementação está estruturada da seguinte forma:
+    - A função **STOCKS_DATASET** carrega as informações de retorno e covariância diários de cada ativo do portfólio em um intervalo de tempo definido pelo usuário. Para fazer o calculo do retorno e covariância é usado as seguintes equações:
+    """)
+    st.latex("""
+    \\text{{Return}} = \\frac{{\\text{{['Close']}}[J + 1]}}{{\\text{{['Close']}}[J]}} - 1 \\tag{1}
+    """)
+    st.markdown("""
+    Onde:
+    
+    $['Close'][J + 1]$: é o preço de fechamento do dia atual.
+    
+    $['Close'][J] - 1$: é o preço de fechamento do dia anterior.
+    """)
+    st.latex("""
+    \\text{{COVARIANCE}} = \\text{{RETURN}}.\\text{{cov}}() \\tag{2}
+    """)
+    st.markdown("""
+    - A função **PORTIFOLIO_RETURN_RISK** calcula o retorno e risco anualizados do portfólio, dado um determinado vetor de pesos $X$, utilizando a matriz de covariância e o vetor de retornos, definidos no dicionário NULL_DIC. O cálculo do retorno e risco anualizado do portfolio é feito usando as seguintes equações: 
+    """)
+    st.latex("""
+    \\text{{Retorno}}_{\\text{{carteira}}} = \sum X[I] \cdot \\text{{RETURN}}[I] \cdot T_Y \\tag{3}
+    """)
+    st.markdown("""
+    Onde:
+    
+    $X[I]$: é a lista de pesos para os ativos.
+    
+    $RETURN$: é a lista de retorno dos ativos.
+    
+    $T_Y$: é o número de dias que a bolsa  opera em 1 ano.
+    """)
+    st.latex("""
+    \\text{{VAR}} = \sum X[I] \cdot X[J] \cdot \\text{{COVARIANCE}}[I, J] \cdot T_Y \\tag{4}
+    """)
+    st.markdown("""
+    Onde: 
+    
+    $X[I]$: é a lista de pesos para os ativos.
+    
+    $COVARIANCE[I,J]$: é a matriz de covariância.
+    
+    $T_Y$: é o número de dias que a bolsa  opera em 1 ano.
+    """)
+    st.latex("""
+    \\text{{Risco}}_{\\text{{carteira}}} = \sqrt{{\\text{{Var}}}} \\tag{5}
+    """)
+    st.markdown("""
+    - A função objetiva do problema de otimização, definida como o índice de Sharpe negativo do portfólio (de forma a transformar o problema de maximização em minimização), acrescido de uma penalização às violações da restrição de investimento em cada ativo do portfólio.
+    
+    Por fim, o código define os limites de investimento $(X_L e X_U)$, o dicionário **NULL_DIC**, contendo as informações necessárias para a resolução do problema de otimização, e os parâmetros do algoritmo **Firefly (PARAMETERS)**. A função **OF_FUNCTION** é utilizada como a função objetivo do algoritmo, e a função **PORTIFOLIO_RETURN_RISK** é utilizada para calcular o retorno e risco do portfólio em cada iteração do algoritmo.
+    
     """)

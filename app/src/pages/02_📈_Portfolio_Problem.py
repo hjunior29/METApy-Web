@@ -1,10 +1,8 @@
 import streamlit as st
 from datetime import date
 import datetime
-import func
 import streamlit.components.v1 as components
 
-func.style_setup()
 
 st.image("app/src/images/META_logo.png", width=150)
 st.title("Portfolio Problem")
