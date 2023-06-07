@@ -97,124 +97,78 @@ st.write("""
 """, unsafe_allow_html=True)
 
 #Escolher metodo de otimizacao
-Optimization = ["Selecione o metodo de otimização","Firefly Algorithm"]
+st.markdown("### Escolha o algoritmo para resolver o problema:")
+Optimization = ["Selecione o método de otimização","Firefly Algorithm"]
 
-selected_Optimization = st.selectbox("**Optimization:**", Optimization)
+selected_Optimization = st.selectbox("Selecione:", Optimization)
    
 if selected_Optimization == "Firefly Algorithm":
 
     #seleciona o conjuntos de ativo
-    stocks_set = ["Selecione a Instância","USA-1", "USA-2", "USA-3", "USA-4"]
-    selected_instance = st.selectbox("**Instância**", stocks_set)
+    st.markdown("### Selecione a instância:")
+    stocks_set = ["Selecione a Instância","Conjunto de Ativos 1", "Conjunto de Ativos 2", "Conjunto de Ativos 3", "Conjunto de Ativos 4"]
+    selected_instance = st.selectbox("Selecione:", stocks_set)
     
-    if selected_instance == "USA-1":
+    if selected_instance == "Conjunto de Ativos 1":
         st.markdown(
         """
-        | Empresa         | Símbolo   | Parâmetros da Otimização  | Data Inicial | Data Final |
-        |-----------------|-----------|---------------------------|--------------|------------|
-        |Apple            | AAPL      | Número de Repetições: 30  | 01/01/2016   | 31/12/2017 |
-        |Amazon           | AMZN      | Número de Interações: 500 |
-        |Meta Platforms   | META      | Número da População:  20  |
+        | Empresa         | Símbolo   | 
+        |-----------------|-----------|
+        |Apple            | AAPL      | 
+        |Amazon           | AMZN      | 
+        |Meta Platforms   | META      |
         |Google           | GOOGL     |
         
         """
         )
-        if st.button ("**Play**"):
-            FA_PORTIFOLIO.FIREFLY()
+        FA_PORTIFOLIO.FIREFLY()
     
-    elif selected_instance == "USA-2":
+    elif selected_instance == "Conjunto de Ativos 2":
         st.markdown(
         """
-        | Empresa                 | Símbolo   | Parâmetros da Otimização  | Data Inicial | Data Final |
-        |-------------------------|-----------|---------------------------|--------------|------------|
-        |WEG S.A.                 | WEGE3.SA  | Número de Repetições: 30  | 01/01/2016   | 31/12/201  |
-        |Lojas Renner S.A.        | LREN3.SA  | Número de Interações: 500 |
-        |Vale S.A.                | VALE3.SA  | Número da População:  20  |
+        | Empresa                 | Símbolo   |
+        |-------------------------|-----------|
+        |WEG S.A.                 | WEGE3.SA  |
+        |Lojas Renner S.A.        | LREN3.SA  |
+        |Vale S.A.                | VALE3.SA  |
         |Petróleo Brasileiro S.A. | PETR4.SA  |
         |Equatorial Energia S.A.  | EQTL3.SA  |
    
         """
         )
         stocks_set_2 = ["WEGE3.SA", "LREN3.SA", "VALE3.SA", "PETR4.SA", "EQTL3.SA"]
+        FA_PORTIFOLIO.FIREFLY()
 
-        #start_day = datetime.date.today()
-        #start_day = st.date_input("**Selecione a data inicial**", max_value=start_day)
-        #end_day = date.today()
-        #end_day = st.date_input("Selecione a data final",max_value=end_day)
-        
-        #if end_day < start_day:
-         #   st.error("A data final deve ser posterior à data inicial.")
-        
-#Setup e parametros
-    
-        # N_REP = st.number_input("N_REP", format="%0.1f")
-        # N_POP = st.number_input("N_ITER", format="%0.1f")
-        # N_ITER = st.number_input("N_POP", format="%0.1f")
-
-        if st.button ("**Play**"):
-            FA_PORTIFOLIO.FIREFLY()
-
-    if selected_instance == "USA-3":
+    if selected_instance == "Conjunto de Ativos 3":
         st.markdown(
         """
-        | Empresa                  | Símbolo   | Parâmentros da Otimização  | Data Inicial | Data Final |
-        |--------------------------|-----------|----------------------------|--------------|------------|
-        |Engie Brasil Energia S.A. | EGIE3.SA  | Número de Repetições: 30   |01/01/2016    | 31/12/2017 |
-        |Magazine Luiza S.A.       | MGLU3.SA  | Número de Interações: 500  |
-        |Ambev S.A.                | ABEV3.SA  | Número da População:  20   |
+        | Empresa                  | Símbolo   |
+        |--------------------------|-----------|
+        |Engie Brasil Energia S.A. | EGIE3.SA  |
+        |Magazine Luiza S.A.       | MGLU3.SA  |
+        |Ambev S.A.                | ABEV3.SA  |
         |Banco Bradesco S.A.       | BBDC3.SA  |
         |NIKE, Inc.                | NIKE34.SA |
         """
         )
         stocks_set_3 = ["EGIE3.SA","NIKE34.SA", "ABEV3.SA","BBDC3.SA","MGLU3.SA"]
-
-        #start_day = datetime.date.today()
-        #start_day = st.date_input("**Selecione a data inicial**", max_value=start_day)
-        #end_day = date.today()
-        #end_day = st.date_input("Selecione a data final",max_value=end_day)
-        
-        #if end_day < start_day:
-        #    st.error("A data final deve ser posterior à data inicial.")
-        
-#Setup e parametros
-        # N_REP = st.number_input("N_REP", format="%0.1f")
-        # N_POP = st.number_input("N_ITER", format="%0.1f")
-        # N_ITER = st.number_input("N_POP", format="%0.1f")
-
-        if st.button ("**Play**"):
-            FA_PORTIFOLIO.FIREFLY()
+        FA_PORTIFOLIO.FIREFLY()
 
 
-    elif selected_instance == "USA-4":
+    elif selected_instance == "Conjunto de Ativos 4":
         st.markdown(
         """
-        | Empresa               | Símbolo   | Parâmetros da Otimização  | Data Inicial | Data Final | 
-        |-----------------------|-----------|---------------------------|--------------|------------|
-        |C&A Modas S.A.         | CEAB3.SA  | Número de Repetições: 30  | 01/01/2016   | 31/12/2017 | 
-        |Itaúsa S.A.            | ITSA4.SA  | Número de Interações: 500 |              |            | 
-        |Atacadão S.A.          | CRFB3.SA  | Número da População:  20  |              |            | 
+        | Empresa               | Símbolo   |
+        |-----------------------|-----------|
+        |C&A Modas S.A.         | CEAB3.SA  |  
+        |Itaúsa S.A.            | ITSA4.SA  |
+        |Atacadão S.A.          | CRFB3.SA  | 
         |Sony Group Corporation | SNEC34.SA |
         |Nu Holdings Ltd.       | NUBR33.SA |
         """
         )
         stocks_set_4 = ["NUBR33.SA","ITSA4.SA", "CEAB3.SA","SNEC34.SA","CRFB3.SA"]
-
-        #start_day = datetime.date.today()
-        #start_day = st.date_input("**Selecione a data inicial**", max_value=start_day)
-        #end_day = date.today()
-        #end_day = st.date_input("Selecione a data final",max_value=end_day)
-        
-        #if end_day < start_day:
-         #   st.error("A data final deve ser posterior à data inicial.")
-        
-#Setup e parametros
-        
-        # N_REP = st.number_input("N_REP", format="%0.1f")
-        # N_POP = st.number_input("N_ITER", format="%0.1f")
-        # N_ITER = st.number_input("N_POP", format="%0.1f")
-
-        if st.button ("**Play**"):
-            FA_PORTIFOLIO.FIREFLY()
+        FA_PORTIFOLIO.FIREFLY()
 
 
     # elif selected_instance == "Custom":
@@ -234,11 +188,4 @@ if selected_Optimization == "Firefly Algorithm":
     #     if end_day < start_day:
     #         st.error("A data final deve ser posterior à data inicial.")
         
-    #     #Setup e parametros
-        
-    #     N_REP = st.number_input("N_REP", format="%0.0f")
-    #     N_POP = st.number_input("N_ITER", format="%0.0f")
-    #     N_ITER = st.number_input("N_POP", format="%0.0f")
-
-    #     if st.button ("**Play**"):
-    #         FA_PORTIFOLIO.FIREFLY()
+    #     FA_PORTIFOLIO.FIREFLY()
