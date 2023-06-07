@@ -271,9 +271,15 @@ def PORTFOLIO_INSTANCES_SETUP(ALGORITHM):
             |Equatorial Energia S.A.  | EQTL3.SA  |
         """)
         if ALGORITHM == "Firefly":
-            FIREFLY(SELECTED_INSTANCE)
+            # FIREFLY(SELECTED_INSTANCE)
+            st.markdown("""
+            Resultado...
+            """)
         elif ALGORITHM == "Outro":
-            OUTRO(SELECTED_INSTANCE)
+            # OUTRO(SELECTED_INSTANCE)
+            st.markdown("""
+            Resultado...
+            """)
         # elif ...
 
     if SELECTED_INSTANCE == "Conjunto de ativos 2":
@@ -287,9 +293,15 @@ def PORTFOLIO_INSTANCES_SETUP(ALGORITHM):
             |NIKE, Inc.                | NIKE34.SA |
         """)
         if ALGORITHM == "Firefly":
-            FIREFLY(SELECTED_INSTANCE)
+            # FIREFLY(SELECTED_INSTANCE)
+            st.markdown("""
+            Resultado...
+            """)
         elif ALGORITHM == "Outro":
-            OUTRO(SELECTED_INSTANCE)
+            # OUTRO(SELECTED_INSTANCE)
+            st.markdown("""
+            Resultado...
+            """)
         # elif ...
 
     if SELECTED_INSTANCE == "Conjunto de ativos 3":
@@ -303,9 +315,15 @@ def PORTFOLIO_INSTANCES_SETUP(ALGORITHM):
             |Nu Holdings Ltd.          | NUBR33.SA |
         """)
         if ALGORITHM == "Firefly":
-            FIREFLY(SELECTED_INSTANCE)
+            # FIREFLY(SELECTED_INSTANCE)
+            st.markdown("""
+            Resultado...
+            """)
         elif ALGORITHM == "Outro":
-            OUTRO(SELECTED_INSTANCE)
+            # OUTRO(SELECTED_INSTANCE)
+            st.markdown("""
+            Resultado...
+            """)
         # elif ...
 
     if SELECTED_INSTANCE == "Custom":
@@ -319,7 +337,13 @@ def PORTFOLIO_INSTANCES_SETUP(ALGORITHM):
             |Equatorial Energia S.A.  | EQTL3.SA  |
         """)
         if ALGORITHM == "Firefly":
-            FIREFLY(SELECTED_INSTANCE)
+            # FIREFLY(SELECTED_INSTANCE)
+            st.markdown("""
+            Resultado...
+            """)
         elif ALGORITHM == "Outro":
-            OUTRO(SELECTED_INSTANCE)
+            # OUTRO(SELECTED_INSTANCE)
+            st.markdown("""
+            Resultado...
+            """)
         # elif ...
