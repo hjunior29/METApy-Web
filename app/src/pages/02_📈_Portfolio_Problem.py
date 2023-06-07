@@ -2,7 +2,7 @@ import streamlit as st
 from datetime import date
 import datetime
 import streamlit.components.v1 as components
-import FA_PORTIFOLIO
+import FA_PORTFOLIO
 
 
 st.image("app/src/images/META_logo.png", width=150)
