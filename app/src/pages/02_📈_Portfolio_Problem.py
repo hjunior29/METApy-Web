@@ -1,9 +1,12 @@
 import streamlit as st
-from datetime import date
-import datetime
-import FA_PORTIFOLIO
+#from datetime import date
+#import datetime
+import FA_PORTFOLIO
+import UTILS
 
-st.image("images/META_logo.png", width=150)
+UTILS.STYLE_SETUP()
+
+st.image("app/src/images/META_logo.png", width=150)
 st.title("Portfolio Problem")
 #st.write("O objetivo do Problema do Portfólio é construir uma carteira de investimentos composta por uma combinação de ativos financeiros, como ações, títulos, fundos imobiliários e commodities, de tal forma que o retorno esperado seja maximizado, considerando o nível de risco aceitável pelo investidor. Este problema envolve a análise de trade-offs entre risco e retorno, e a diversificação dos ativos é uma estratégia-chave para reduzir os riscos associados a flutuações de mercado e eventos econômicos adversos.")
 
@@ -121,7 +124,7 @@ if selected_Optimization == "Firefly Algorithm":
         
         """
         )
-        FA_PORTIFOLIO.FIREFLY()
+        FA_PORTFOLIO.FIREFLY()
     
     elif selected_instance == "Conjunto de Ativos 2":
         st.markdown(
@@ -137,7 +140,7 @@ if selected_Optimization == "Firefly Algorithm":
         """
         )
         stocks_set_2 = ["WEGE3.SA", "LREN3.SA", "VALE3.SA", "PETR4.SA", "EQTL3.SA"]
-        FA_PORTIFOLIO.FIREFLY()
+        FA_PORTFOLIO.FIREFLY()
 
     if selected_instance == "Conjunto de Ativos 3":
         st.markdown(
@@ -152,7 +155,7 @@ if selected_Optimization == "Firefly Algorithm":
         """
         )
         stocks_set_3 = ["EGIE3.SA","NIKE34.SA", "ABEV3.SA","BBDC3.SA","MGLU3.SA"]
-        FA_PORTIFOLIO.FIREFLY()
+        FA_PORTFOLIO.FIREFLY()
 
 
     elif selected_instance == "Conjunto de Ativos 4":
@@ -168,7 +171,7 @@ if selected_Optimization == "Firefly Algorithm":
         """
         )
         stocks_set_4 = ["NUBR33.SA","ITSA4.SA", "CEAB3.SA","SNEC34.SA","CRFB3.SA"]
-        FA_PORTIFOLIO.FIREFLY()
+        FA_PORTFOLIO.FIREFLY()
 
 
     # elif selected_instance == "Custom":
@@ -188,4 +191,4 @@ if selected_Optimization == "Firefly Algorithm":
     #     if end_day < start_day:
     #         st.error("A data final deve ser posterior à data inicial.")
         
-    #     FA_PORTIFOLIO.FIREFLY()
+    #     FA_PORTFOLIO.FIREFLY()
